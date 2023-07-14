@@ -1,0 +1,40 @@
+1. Updating OlaWallet_Amount
+2. Adding FavLocation
+3. Adding/removing/updating card details.
+4. Updating Driver Rating/Status
+5. Something for books and trip
+6. Something for Payment.
+
+
+DELIMITER :
+CREATE or REPLACE FUNCTION updateOlaWalletAmt(custID varchar, val int)
+returns int
+AS
+    totalAmt int;
+BEGIN
+    update Customer set OlaWallet_Amount = OlaWallet_Amount + val where CustomerID=custID;
+
+    select OlaWallet_Amount into totalAmt from Customer where CustomerID=custID;
+
+    return totalAmt; 
+END :
+DELIMITER ;
+
+
+DELIMITER :
+CREATE or REPLACE FUNCTION addFavLocation
+
+
+DELIMITER $$
+
+CREATE OR REPLACE TRIGGER makeATrip(did varchar)
+AFTER UPDATE OF BookingStatus ON Books
+FOR EACH ROW
+BEGIN
+    insert into Trip values();
+END$$
+
+DELIMITER ;
+
+CALL printPattern(20)
+

@@ -1,0 +1,30 @@
+
+TABLES:
+
+User (UserIDP, FirstName, LastName, Phone Number, DOB, Password)
+
+    Customer (CustomerIDP, UserIDF, ProfileType, EmailID, OlaWallet_Amount)
+
+        Customer_Emergency_Contact (UserIDP, ContactNumber)
+
+        Customer_Favourite_Location (UserIDP, Location)
+
+        Customer_Card_Details (CustomerIDP, CardHolderName, Card Number, CVV, Expiry Date)
+
+        Customer_UPI_Details (CustomerIDP, UPI ID)
+
+    Partner (PartnerIDP, UserIDF, DateOfJoining, P.Lang, AccHolderName, BankAc, Street, City, State, PinCode, PanCardNo., AadharCardNo)
+
+        Driver (DriverIDP, PartnerIDF, OperatorIDF, VehicleNoF, LicenseNo, Rating, Status)
+
+            Vehicle (VehicleNoP, OperatorID, Type, Company, Model, Color, Chassi Number, RCNumber, InsuranceNumber)
+
+        Fleet_Operator (OperatorIDP, PartnerIDF)
+
+
+Books (BookingIDP, CustomerIDP, Start Address, Destination Address, Date, Time, Preferred_Vehicle_Type, Ride type, Approximate_Cost, Booking Status)
+
+Trip (CRNP, BookingIDF, DriverID, Vehicle Type, PaymentIDF, Final Cost, Status)
+
+Payment (PaymentIDP, PaymentType)
+

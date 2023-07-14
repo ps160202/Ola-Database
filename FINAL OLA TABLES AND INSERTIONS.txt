@@ -1,0 +1,236 @@
+use ola;
+create table user(UserID int not null primary key, FirstName varchar(30) NOT NULL, LastName varchar(30),PhoneNumber varchar(12) NOT NULL,DOB date NOT NULL, Password varchar(20) NOT NULL);
+
+ insert into User values (1, 'Akul', 'Zameendar', '9112348090', '2000-05-19', '**********');
+  insert into User values (2, 'Babu', 'Yajwan', '8998685910', '1997-02-01', '**********');
+    insert into User values (3, 'Clentina', 'Waghmare', '9668610050', '1990-10-04', '**********');
+    insert into User values (4, 'Devi', 'Vishare', '8660807050', '2002-12-21', '**********');
+    insert into User values (5, 'Ethan', 'Hunt', '9668012345', '1994-08-30', '**********');
+    insert into User values (6, 'Fatima', 'Kapoor', '9847832293', '1990-04-04', '**********');
+    insert into User values (7, 'Gabriel', 'McKenzee', '8661552505', '1995-03-17', '**********');
+    insert into User values (8, 'Harish', 'Chatarjee', '6880492580', '1978-06-23', '**********');
+    insert into User values (9, 'Ishaan', 'Kulkarni', '8622928850', '1990-08-19', '*********');
+    insert into User values (10, 'Jyn', 'Russo', '8098553109', '1987-05-30', '**********');
+    insert into User values (11, 'Kareen', 'Abdul', '94480152205', '1991-04-01', '**********');
+    insert into User values (12, 'Luke', 'Skywalker', '7559050179', '1993-10-16', '**********');
+    insert into User values (13, 'Manish', 'Paranzpe', '9660608042', '1986-08-21', '**********');
+    insert into User values (14, 'Nikita', 'Kumar', '7980808050', '1995-06-13', '**********');
+    insert into User values (15, 'Osama', 'Raj', '9005065018', '1989-11-29', '**********');
+    select * from user;
+   
+    create table customer (CustomerID varchar(15) not null primary key, 
+    UserID int NOT NULL,  ProfileType varchar(1) NOT NULL, 
+    EmailId varchar(30) not null,
+   OlaWallet_Amount float,
+   FOREIGN KEY (UserID) REFERENCES user(UserID ) on update cascade on delete restrict);
+  
+  
+  insert into Customer values ('C0000000001', 1, 'P', 'akulz123@gmail.com', 0);
+        insert into Customer values ('C0000000002', 2, 'N', 'yajwanbabu@gmail.com', 822);
+        insert into Customer values ('C0000000003', 3, 'P', 'cclentina455@gmail.com', 390);
+        insert into Customer values ('C0000000004', 4, 'N', 'devi.vishare134@gmail.com', 1500);
+        insert into Customer values ('C0000000005', 5, 'N', 'ethanhuntMI@gmail.com', 200);
+         select * from customer;
+         
+         
+         create table Customer_Emergency_Contact (CustomerID varchar(15) not null  , 
+    ContactNumber varchar(12) not null,
+    primary key(CustomerID,ContactNumber),
+   FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID)
+   on update cascade on delete restrict);
+insert into Customer_Emergency_Contact values ('C0000000001', '9446205053');
+            insert into Customer_Emergency_Contact values ('C0000000001', '9112306148');
+            insert into Customer_Emergency_Contact values ('C0000000002', '8660480269');
+            insert into Customer_Emergency_Contact values ('C0000000002', '6448029668');
+            insert into Customer_Emergency_Contact values ('C0000000003', '9556128020');
+            insert into Customer_Emergency_Contact values ('C0000000003', '8660795058');
+            insert into Customer_Emergency_Contact values ('C0000000004', '6065556880');
+            insert into Customer_Emergency_Contact values ('C0000000005', '8866889804');
+            
+            create table Customer_Favourite_Location (CustomerID varchar(15) not null  , 
+    Location varchar(50) not null,
+    primary key(CustomerID,Location),
+   FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID)on update cascade on delete restrict);
+
+            insert into Customer_Favourite_Location values ('C0000000001', 'https://goo.gl/maps/47EgFkTPzEo4ATMT9');
+            insert into Customer_Favourite_Location values ('C0000000001', 'https://goo.gl/maps/1zP1ANdtq1fRcGQw7');
+            insert into Customer_Favourite_Location values ('C0000000001', 'https://goo.gl/maps/XqTjpqeN9NyvoEHfA');
+            insert into Customer_Favourite_Location values ('C0000000002', 'https://goo.gl/maps/2n1d7i6a2Avw5mm9A');
+            insert into Customer_Favourite_Location values ('C0000000002', 'https://goo.gl/maps/3qag5CxKSJTzJ1Q38');
+            insert into Customer_Favourite_Location values ('C0000000002', 'https://goo.gl/maps/sgSfxzLkNavUwpnK6');
+            insert into Customer_Favourite_Location values ('C0000000003', 'https://goo.gl/maps/heyty5qVhuf3tHD56');
+            insert into Customer_Favourite_Location values ('C0000000003', 'https://goo.gl/maps/uuBheMHhWHRFvCmy7');
+            insert into Customer_Favourite_Location values ('C0000000004', 'https://goo.gl/maps/Uh8UJtXkeR58xyBU6');
+            insert into Customer_Favourite_Location values ('C0000000004', 'https://goo.gl/maps/afrWYRMbHzEkMcw38');
+        select * from  Customer_Favourite_Location
+        
+    create table  Customer_Card_Details (CustomerID varchar(15) , 
+      CardHolderName varchar(30), 
+     CardNumber varchar(20) ,
+     CVV int,
+   ExpiryDate varchar(5),
+   primary key(CustomerID,CardNumber),
+   FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID) on update cascade on delete restrict);     
+         
+            insert into Customer_Card_Details values ('C0000000001', 'Akul Z', '1520 8105 9802 5550', 629, '05/30');
+            insert into Customer_Card_Details values ('C0000000002', 'Babu Yajwan', '8098 6504 52330 5086', 088, '06/26');
+            insert into Customer_Card_Details values ('C0000000003', 'Clentina Waghmare', '0658 9852 1561 2608', 988, '12/28');
+            insert into Customer_Card_Details values ('C0000000004', 'Devi V', '6804 9845 0288 9556', 465, '01/31');
+            insert into Customer_Card_Details values ('C0000000004', 'Devi Vishare', '6801 5050 4098 9871', 123, '03/29');
+            insert into Customer_Card_Details values ('C0000000005', 'Ethan Hunt', '6480 8122 2348 3580', 008, '06/26');
+            select * from Customer_Card_Details
+            
+                
+    create table  Customer_UPI_Details (CustomerID varchar(15) , 
+      UPIID varchar(20), 
+    
+   primary key(CustomerID, UPIID),
+   FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID) on update cascade on delete restrict); 
+   
+      
+            insert into Customer_UPI_Details values ('C0000000001', 'akul123@okhdfcbank');
+            insert into Customer_UPI_Details values ('C0000000002', 'babuy15@okhdfcbank');
+            insert into Customer_UPI_Details values ('C0000000003', 'clenty44@okicicibank');
+            insert into Customer_UPI_Details values ('C0000000004', 'devdev909@okyesbank');
+            insert into Customer_UPI_Details values ('C0000000005', 'ethanmi6@okaxisbank');
+
+
+create table  Partner(PartnerID varchar(15) not null primary key, 
+    UserID int NOT NULL,  
+    DateOfJoining date not null,
+    PLang varchar(2) not null,
+    AccHolderName varchar(30),
+   BankAc varchar(20),
+   Street varchar(20), City varchar(20), State varchar(20), PinCode varchar(6), PanCardNo varchar(10), AadharCardNo varchar(15),
+   FOREIGN KEY (UserID) REFERENCES user(UserID ) on update cascade on delete cascade);partner
+
+
+     
+        insert into Partner values ('P000000001', 6, '2022-11-23', 'EN', 'Sarfaraz Kapoor', 'SBI200708', 'Baner', 'Pune', 'Maharashtra', '411021', 'N20156', '5829 3294 4921');
+        insert into Partner values ('P000000002', 7, '2022-02-11', 'HN', 'Gabriel McKenzee', 'SBI211202', 'Goregaon', 'Mumbai', 'Maharashtra', '210021', 'N63421', '5724 2472 9516');
+        UPDATE Partner
+SET Street = 'Aundh Baner', City = 'Pune', State='Maharashtra',PinCode='411007'
+WHERE PartnerID = 'P000000002';
+        insert into Partner values ('P000000003', 8, '2022-01-10', 'MT', 'Harish Chatarjee', 'SBI299102', 'RK Puram', 'New Delhi', 'Delhi', '110211', 'N53487', '5692 4867 9862');       
+      UPDATE Partner
+SET Street = 'Balewadi', City = 'Pune', State='Maharashtra',PinCode=' 411045'
+WHERE PartnerID = 'P000000003';  
+
+
+
+insert into Partner values ('P000000004',9, '2022-03-22', 'MT', 'Ishaan V Kulkarni', 'SBI233109', ' Kalyani Nagar', 'Pune', 'Maharashtra', '411014', 'N56581', '7184 8767 9162');
+        insert into Partner values ('P000000005', 10, '2021-12-23', 'EN', 'Jyn Russo', 'SBI201709', 'Goregaon', 'Mumbai', 'Maharashtra', '210021', 'N73666', '6692 9274 8966');
+        insert into Partner values ('P000000006', 11, '2020-09-19', 'HN', 'Kareen Abdul', 'SBI287106', 'RK Puram', 'New Delhi', 'Delhi', '110211', 'N58912', '5491 4867 9424');
+        insert into Partner values ('P000000007', 12, '2022-01-05', 'EN', 'Luke Skywalker', 'SBI293105', 'Azadpur', 'New Delhi', 'Delhi', '110033', 'N65483', '7292 6667 8765');
+        insert into Partner values ('P000000008', 13, '2022-04-18', 'MT', 'Manish Paranzpe', 'SBI274309', 'Mahim', 'Mumbai', 'Maharashtra', '400016', 'N95487', '9876 5432 1234');
+        insert into Partner values ('P000000009', 14, '2021-08-24', 'HN', 'Nikita Kumar', 'SBI288602', ' Brigade Road', 'Bangalore', 'Karnataka', '560001', 'N42165', '4321 9876 1198');
+        insert into Partner values ('P0000000010', 15, '2021-02-25', 'HN', 'Osama Raj', 'SBI205107', 'Adugodi', 'Bangalore', 'Karnataka', '560030', 'N77248', '5678 1234 1020');
+
+
+
+
+
+
+
+  create table Driver (DriverID varchar(15) not null primary key, 
+   PartnerID varchar(15) NOT NULL unique , VehicleNo varchar(12) NOT NULL, 
+    OperatorID varchar(15) ,
+    LicenseNo varchar(10) NOT NULL Unique,
+   Rating float,
+   Status varchar(2) NOT NULL,
+   FOREIGN KEY (PartnerID) REFERENCES partner(PartnerID) on update cascade on delete cascade,
+   FOREIGN KEY (VehicleNo) REFERENCES vehicle(VehicleNo) on update cascade on delete cascade,
+   FOREIGN KEY (OperatorID) REFERENCES fleet_operator(OperatorID) on update cascade on delete cascade);
+  
+        insert into Driver values ('DR00000001', 'P000000001', 'MH13 5005', 'F000000001', 'LIN34625', 4.6, 'ON');
+        insert into Driver values ('DR00000002', 'P000000002', 'MH12 5815', 'F000000001', 'LIN95672', 3.7, 'ON');
+
+     insert into Driver values ('DR00000003', 'P000000004', 'MH13 1602', NULL, 'LIN56724', 4.8, 'OFF');
+        insert into Driver values ('DR00000004', 'P000000005', 'MH47 8820','F000000003', 'LIN59157', 4.4, 'OFF');
+        insert into Driver values ('DR00000005', 'P000000006', 'DL2C 0070', 'F000000002', 'LIN56242', 4.6, 'ON');
+        insert into Driver values ('DR00000006', 'P000000009', 'KA01 1975', 'F000000004', 'LIN87641', 4.8, 'ON');
+
+        
+create table Fleet_Operator(OperatorID varchar(15) not null primary key, 
+   PartnerID varchar(15) NOT NULL UNIQUE,
+   FOREIGN KEY (PartnerID) REFERENCES partner(PartnerID) on update cascade on delete restrict);
+	insert into Fleet_Operator values ('F000000001', 'P000000003');
+insert into Fleet_Operator values ('F000000003', 'P000000008');
+insert into Fleet_Operator values ('F000000002', 'P000000007');
+insert into Fleet_Operator values ('F000000004', 'P000000010');
+
+create table Vehicle (VehicleNo varchar(12) not null primary key, 
+   OperatorID varchar(15) , Type varchar(2) NOT NULL, 
+    Company varchar(15) NOT NULL ,
+     Model varchar(15) NOT NULL,
+   Color varchar(15) NOT NULL,
+   ChassiNumber varchar(17) NOT NULL unique,
+   RCNumber varchar(15) NOT NULL unique, InsuranceNumber varchar(15) NOT NULL unique,
+   
+   FOREIGN KEY (OperatorID) REFERENCES  Fleet_Operator(OperatorID) on update cascade on delete cascade);
+
+    insert into Vehicle values ('MH13 5005', 'F000000001', 'AT', 'Bajaj', 'Compact RE', 'Yellow-Green', 'CN202201', 'RC202201', 'ISN202201');
+    insert into Vehicle values ('MH12 5815', 'F000000001', 'MI', 'Nissan', 'Micra', 'Silver', 'CN202202', 'RC202202', 'ISN202202');
+    insert into Vehicle values ('MH13 1602', 'F000000001', 'PS', 'Maruti', 'Swift-Dzire', 'Silver', 'CN202203', 'RC202203', 'ISN202203');
+    insert into Vehicle values ('MH47 8820', 'F000000003', 'AT', 'Mahindra', 'Alpha', 'Black-Yellow', 'CN202204', 'RC202204', 'ISN202204');
+    insert into Vehicle values ('DL2C 0070', 'F000000002', 'PV', 'Chevrolet', 'Enjoy', 'Silver', 'CN202205', 'RC202205', 'ISN202205');
+     insert into Vehicle values ('KA01 1975', 'F000000004', 'PP', 'Toyota', 'Etios', 'Silver', 'CN202206', 'RC202206', 'ISN202206');
+    
+    create table Books (BookingID varchar(12) not null primary key, 
+   CustomerID varchar(15) not null ,  StartAddress varchar(50) NOT NULL, 
+   DestinationAddress varchar(50) NOT NULL,
+    RideDate date NOT NULL ,
+    RideTime time not null,
+     Preferred_Vehicle_Type varchar(2),
+   RideType varchar(2) NOT NULL,
+   Approximate_Cost float,
+  BookingStatus varchar(2) NOT NULL,
+   FOREIGN KEY ( CustomerID ) REFERENCES  Customer( CustomerID ) on update cascade on delete restrict);
+ 
+        insert into Books values ('BK00000003', 'C0000000001', 'https://goo.gl/maps/wueHr8bjkArpezKj7', 'https://g.page/BrowniePointMahim?share', '2022-06-19', '16:50:00', 'AT', 'TX', 189 , 'CF');
+    insert into Books values ('BK00000004', 'C0000000002', 'https://g.page/SymbiosisEngineering?share', 'https://goo.gl/maps/hVrGC8aSEy4fChcMA', '2022-09-02', '08:30:00', 'PS', 'TX', 345 , 'CF');
+    insert into Books values ('BK00000005', 'C0000000002', 'https://g.page/DELHICLUBHOUSE?share', 'https://goo.gl/maps/WACP5F2C8dGALDAd9', '2022-10-13', '06:00:00', 'PV', 'OS', 412 , 'CF');
+    insert into Books values ('BK00000006', 'C0000000003', 'https://goo.gl/maps/QZn1GNthyHNcA4Hq8', 'https://goo.gl/maps/5XY5N2WyWsU75vW76', '2022-10-20', '18:40:00', 'AT', 'TX', 299 , 'CF');
+    insert into Books values ('BK00000007', 'C0000000003', 'https://goo.gl/maps/dhpnVYDYaxp6P5VKA', 'https://goo.gl/maps/t2WrWNgSCSbKAuZi9', '2022-10-22', '19:00:00', 'AT', 'TX', 150 , 'CF');
+    insert into Books values ('BK00000008', 'C0000000004', 'https://goo.gl/maps/rVvtvDVZcUariRHf7', 'https://goo.gl/maps/5XY5N2WyWsU75vW76', '2022-11-02', '05:30:00', 'PS', 'OS', 99 , 'CF');
+    insert into Books values ('BK00000009', 'C0000000004', 'https://goo.gl/maps/rVvtvDVZcUariRHf7', 'https://goo.gl/maps/rVvtvDVZcUariRHf7', '2022-11-11', '05:30:00', 'PP', 'OS', 190 , 'CF');
+    insert into Books values ('BK00000010', 'C0000000005', 'https://g.page/apricot-service-apartments?share', 'https://g.page/SymbiosisEngineering?share', '2022-10-30', '12:35:00', 'AT', 'TX', 211 , 'CF');
+    insert into Books values ('BK00000011', 'C0000000005', 'https://goo.gl/maps/eUjfM8XELXecjXck8', 'https://goo.gl/maps/AqPvvNNzNJxcGSva9', '2022-11-04', '14:00:00', 'MI', 'TX', 120 , 'CF');
+    insert into Books values ('BK00000012', 'C0000000005', 'https://goo.gl/maps/hVrGC8aSEy4fChcMA', 'https://goo.gl/maps/73aMH3LAz1ZXJArV7', '2022-11-08', '13:30:00', 'AT', 'TX', 79 , 'CP');
+
+create table Trip (CRN varchar(12) not null primary key, 
+BookingID varchar(15) not null,
+   DriverID varchar(15) not null ,  VehicleType varchar(2) NOT NULL, 
+   PaymentID varchar(15) ,
+    FinalCost float not null ,
+   Status varchar(2) NOT NULL,
+   FOREIGN KEY ( DriverID ) REFERENCES  driver( DriverID ) on update cascade on delete restrict,
+   FOREIGN KEY ( BookingID ) REFERENCES  books( BookingID ) on update restrict on delete restrict,
+    FOREIGN KEY ( PaymentID ) REFERENCES  payment(PaymentID ) on update restrict on delete restrict);
+ 
+    iinsert into Trip values ('6789343901', 'BK00000001', 'DR00000001', 'AT', 'PAY0000001', 250 , 'RD');
+    insert into Trip values ('6789343902', 'BK00000002', 'DR00000002', 'MI', 'PAY0000002', 160 , 'RD');
+   insert into Trip values ('6789343903', 'BK00000003', 'DR00000004', 'AT', NULL, 0.0, 'CC');
+    insert into Trip values ('6789343904', 'BK00000004', 'DR00000003', 'PS', 'PAY0000003', 345 , 'RD');
+    insert into Trip values ('6789343905', 'BK00000005', 'DR00000005', 'PV', 'PAY0000004', 410 , 'RD');
+    insert into Trip values ('6789343906', 'BK00000006', 'DR00000001', 'AT', 'PAY0000005', 300 , 'RD');
+   insert into Trip values ('6789343907', 'BK00000007', 'DR00000004', 'AT', 'PAY0000006', 150 , 'RD');
+    insert into Trip values ('6789343908', 'BK00000008', 'DR00000003', 'PS', 'PAY0000007', 100 , 'RD');
+    insert into Trip values ('6789343909', 'BK00000009', 'DR00000006', 'PP', NULL, 190 , 'PN');
+    insert into Trip values ('6789343910', 'BK00000010', 'DR00000001', 'AT', 'PAY0000008', 210 , 'RD');
+    insert into Trip values ('6789343911', 'BK00000011', 'DR00000002', 'MI', 'PAY0000009', 120 , 'RD');
+
+        
+create table Payment (PaymentID varchar(12) not null primary key, 
+PaymentType varchar(2) not null);
+       
+    insert into Payment values ('PAY0000001', 'CH');
+    insert into Payment values ('PAY0000002', 'CH');
+    insert into Payment values ('PAY0000003', 'UP');
+    insert into Payment values ('PAY0000004', 'UP');
+    insert into Payment values ('PAY0000005', 'OW');
+    insert into Payment values ('PAY0000006', 'OW');
+    insert into Payment values ('PAY0000007', 'CD');
+    insert into Payment values ('PAY0000008', 'CH');
+    insert into Payment values ('PAY0000009', 'CH');
+
